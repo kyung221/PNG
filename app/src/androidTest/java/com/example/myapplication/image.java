@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 /**
@@ -34,32 +36,25 @@ public class image extends ExampleInstrumentedTest {
         Assert.assertEquals(10, img.getData().length);
 
     }
-    ImageData lhs, rhs;
+    ImageData lhs, rhs, mhs;
     @Before
     public void Same() throws Exception
     {
         ILoader myloader = new PNGLoader();
-        lhs = myloader.load(context,"cake.png");
-        rhs = myloader.load(context,"cake_flop.png");
 
     }
 
     @Test
-    public void CheckData() throws Exception{
-        Random rng = new Random();
-
-        int length = lhs.getWidth() * rhs.getHeight()*lhs.getChannel();
-        int count = 1000;
-        byte[] origin = lhs.getData();
-        byte[] copy = rhs.mirror();
-        while(count-- > 0){
-            int idx = rng.nextInt(length - 1);
-            Assert.assertEquals(origin[idx], copy[idx]);
-           // if(origin[idx]!=copy[idx])
-
-        }
-
+    public void CheckWidth() throws Exception{
+        assertEquals(10,lhs.getWidth());
     }
-
+    @Test
+    public void CheckHeight() throws Exception{
+        assertEquals(10,lhs.getHeight());
+    }
+    @Test
+    public void CheckChannels() throws Exception{
+        assertEquals(10,lhs.getChannel());
+    }
 }
 

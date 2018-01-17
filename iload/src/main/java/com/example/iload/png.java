@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import ar.com.hjg.pngj.ImageInfo;
 import ar.com.hjg.pngj.ImageLineByte;
+import ar.com.hjg.pngj.ImageLineHelper;
 import ar.com.hjg.pngj.PngReaderByte;
 import ar.com.hjg.pngj.PngWriter;
 
@@ -20,6 +21,7 @@ public class png implements ImageData {
     int width;
     int height;
     int channels;
+    ImageInfo iminfo;
     byte[] data;
     AssetManager am;
     String assetPath;
@@ -33,12 +35,9 @@ public class png implements ImageData {
         this.am = am;
         pngr = new PngReaderByte(am.open(assetPath));
         data = new byte[pngr.imgInfo.cols*pngr.imgInfo.rows*pngr.imgInfo.channels];
+        pngr.close();
     }
-    public png(png p)
-    {
-        pngr=p.pngr;
-        data=p.data;
-    }
+
     @Override
     public void load(AssetManager am, String assetPath)throws Exception {
         pngr = new PngReaderByte(am.open(assetPath));
@@ -53,6 +52,10 @@ public class png implements ImageData {
        return format;
     }
 
+    @Override
+    public ImageInfo getInfo(){
+        return pngr.imgInfo;
+    }
     @Override
     public int getWidth() {
         width = pngr.imgInfo.cols;
@@ -86,7 +89,7 @@ public class png implements ImageData {
 
     @Override
     public byte[] mirror() throws Exception {
-        byte[] mirror = new byte[pngr.imgInfo.cols*pngr.imgInfo.rows*pngr.imgInfo.channels];
+
         byte[] line = new byte[pngr.imgInfo.cols*pngr.imgInfo.channels];
         int channels = pngr.imgInfo.channels;
         byte aux;
@@ -110,19 +113,19 @@ public class png implements ImageData {
 
     @Override
     public byte[] flip() throws Exception{
-        byte[] flip = new byte[pngr.imgInfo.cols*pngr.imgInfo.rows*pngr.imgInfo.channels];
+        byte[] temp = new byte[pngr.imgInfo.cols*pngr.imgInfo.rows*pngr.imgInfo.channels];
         byte[] line1 = new byte[pngr.imgInfo.cols*pngr.imgInfo.channels];
-
+        System.arraycopy(data,0,temp,0,data.length);
         int k = pngr.imgInfo.rows - 1;
         for(int row =0;row<pngr.imgInfo.rows;row++) {
-            System.arraycopy(data,(line1.length)*row,line1,0,line1.length);
+            System.arraycopy(temp,(line1.length)*row,line1,0,line1.length);
 
             System.arraycopy(line1, 0, data,
                     line1.length * (k--), line1.length);
         }
 
-
         return data;
     }
+
 
 }

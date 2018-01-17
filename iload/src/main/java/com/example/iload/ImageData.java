@@ -3,9 +3,14 @@ package com.example.iload;
 import android.content.res.AssetManager;
 import android.graphics.ImageFormat;
 
+import ar.com.hjg.pngj.ImageInfo;
+
 
 public interface ImageData {
     ImageFormat getFormat();
+
+    ImageInfo getInfo();
+
     int getWidth();
     int getChannel();
     int getHeight();

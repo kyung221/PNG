@@ -20,29 +20,31 @@
         android:layout_height="150dp"
         android:adjustViewBounds="true" />
 
-    <ImageView
-        android:id="@+id/pngCopy"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
 
-        android:adjustViewBounds="true" />
 </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/pngFlip"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:adjustViewBounds="true"
-        />
-    <ImageView
-        android:id="@+id/pngDouble"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:adjustViewBounds="true"/>
-    </LinearLayout>
+
+
+<Button
+    android:id="@+id/mirror"
+    android:text="mirror"
+    android:layout_width="100dp"
+    android:layout_height="50dp"
+    android:clickable="true"
+    android:onClick="ButtonClick"/>
+    <Button
+        android:id="@+id/flip"
+        android:text="flip"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:onClick="ButtonClick"/>
+    <Button
+        android:id="@+id/original"
+        android:text="original"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:onClick="ButtonClick"/>
 </LinearLayout>
 
 
