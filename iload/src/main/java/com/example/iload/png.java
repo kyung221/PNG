@@ -4,14 +4,13 @@ package com.example.iload;
 import android.content.res.AssetManager;
 import android.graphics.ImageFormat;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import ar.com.hjg.pngj.ImageInfo;
 import ar.com.hjg.pngj.ImageLineByte;
-import ar.com.hjg.pngj.ImageLineHelper;
+
 import ar.com.hjg.pngj.PngReaderByte;
-import ar.com.hjg.pngj.PngWriter;
+
 
 
 public class png implements ImageData {
@@ -21,7 +20,7 @@ public class png implements ImageData {
     int width;
     int height;
     int channels;
-    ImageInfo iminfo;
+
     byte[] data;
     AssetManager am;
     String assetPath;
@@ -35,7 +34,7 @@ public class png implements ImageData {
         this.am = am;
         pngr = new PngReaderByte(am.open(assetPath));
         data = new byte[pngr.imgInfo.cols*pngr.imgInfo.rows*pngr.imgInfo.channels];
-        pngr.close();
+
     }
 
     @Override
@@ -47,9 +46,9 @@ public class png implements ImageData {
 
     @Override
     public ImageFormat getFormat() {
-      // int form = ImageFormat.UNKNOWN;
-       final ImageFormat format = getFormat();
-       return format;
+        // int form = ImageFormat.UNKNOWN;
+        final ImageFormat format = getFormat();
+        return format;
     }
 
     @Override

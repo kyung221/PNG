@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import android.content.res.AssetManager;
-import android.renderscript.ScriptGroup;
-
 import com.example.iload.ILoader;
 import com.example.iload.ImageData;
 import com.example.iload.PNGLoader;
@@ -11,10 +8,6 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Random;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -41,7 +34,9 @@ public class image extends ExampleInstrumentedTest {
     public void Same() throws Exception
     {
         ILoader myloader = new PNGLoader();
-
+        lhs = myloader.load(context, "540-20180111-12-3725.png");
+        rhs = myloader.load(context, "540-20180111-12-3729.png");
+        mhs = myloader.load(context, "540-20180111-12-3735.png");
     }
 
     @Test
