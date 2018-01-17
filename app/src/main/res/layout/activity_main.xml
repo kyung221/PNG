@@ -10,13 +10,15 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content">
-
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/pngImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:adjustViewBounds="true"
-/>
+        android:adjustViewBounds="true" />
 
     <ImageView
         android:id="@+id/pngCopy"
@@ -24,17 +26,23 @@
         android:layout_height="150dp"
 
         android:adjustViewBounds="true" />
-
+</LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/pngFlip"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:adjustViewBounds="true"
         />
-    <TextView
-        android:id="@+id/mText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/pngDouble"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"/>
+    </LinearLayout>
 </LinearLayout>
 
 

@@ -20,9 +20,7 @@ public class PNGLoader implements ILoader{
     public ImageData load(Context context, String assetPath) throws Exception {
 
         am = context.getAssets();
-        ImageData png = new png();
-        png.load(am,assetPath);
-
+        ImageData png = new png(am,assetPath);
         return png;
     }
 

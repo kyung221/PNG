@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -22,8 +23,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView pngImage,pngCopy,pngFlip;
-    TextView mText;
+    ImageView pngImage,pngCopy,pngFlip,pngDouble;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         pngImage = (ImageView)findViewById(R.id.pngImage);
         pngCopy = (ImageView)findViewById(R.id.pngCopy);
         pngFlip = (ImageView)findViewById(R.id.pngFlip);
-        mText = (TextView)findViewById(R.id.mText);
+        pngDouble = (ImageView)findViewById(R.id.pngDouble);
+
         try {
             loadPNG();
         } catch (Exception e) {
@@ -49,22 +51,25 @@ public class MainActivity extends AppCompatActivity {
         ILoader myloader = new PNGLoader();
 
         ImageData img = myloader.load(context,"cake.png");
+
         byte[]data = img.getData();
-        byte[]mirror = img.flip();
+     //   byte[]mirror = img.mirror();
+        byte[]flip = img.flip();
+
 
         Bitmap bm = Bitmap.createBitmap(img.getWidth(), img.getHeight(), Bitmap.Config.ARGB_8888);
         bm.copyPixelsFromBuffer(ByteBuffer.wrap(data));
 
         Bitmap mr = Bitmap.createBitmap(img.getWidth(),img.getHeight(), Bitmap.Config.ARGB_8888);
-        mr.copyPixelsFromBuffer(ByteBuffer.wrap(mirror));
+       // mr.copyPixelsFromBuffer(ByteBuffer.wrap(mirror));
 
-//        Bitmap fp = Bitmap.createBitmap(img.getWidth(),img.getHeight(), Bitmap.Config.ARGB_8888);
-//        fp.copyPixelsFromBuffer(ByteBuffer.wrap(flip));
+        Bitmap fp = Bitmap.createBitmap(img.getWidth(),img.getHeight(), Bitmap.Config.ARGB_8888);
+        fp.copyPixelsFromBuffer(ByteBuffer.wrap(flip));
 
 
         pngImage.setImageBitmap(bm);
-        pngCopy.setImageBitmap(mr);
-     //   pngFlip.setImageBitmap(fp);
+      //  pngCopy.setImageBitmap(mr);
+        pngFlip.setImageBitmap(fp);
     }
 
 
